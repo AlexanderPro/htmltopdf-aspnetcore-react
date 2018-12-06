@@ -1,0 +1,49 @@
+{
+  "extends": "plugin:react/recommended",
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "experimentalObjectRestSpread": true
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "semi": ["error", "always"],
+    "quotes": ["error", "single"],
+    "jsx-quotes": ["error", "prefer-double"],
+    "no-var": "error",
+    "indent": ["error", 2],
+    "comma-spacing": "error",
+    "space-infix-ops": "error",
+    "space-before-function-paren": ["error", "never"],
+    "space-before-blocks": ["error", "always"],
+    "new-parens": "error",
+    "no-multiple-empty-lines": ["error", {"max": 2}],
+    "no-trailing-spaces": "error",
+    "keyword-spacing": "error",
+    "valid-typeof": "error",
+    "array-bracket-spacing": ["error", "never"],
+    "max-len": ["error", {
+      "code": 180,
+      "ignoreComments": true,
+      "ignoreRegExpLiterals": true
+    }],
+
+    "no-debugger": "error",
+    "no-dupe-args": "error",
+    "no-dupe-keys": "error",
+    "no-duplicate-case": "error",
+    "no-ex-assign": "error",
+    "no-unreachable": "error",
+    "no-undef": "error",
+
+    "react/prop-types": "off",
+    "react/display-name": "off"
+  }
+}
