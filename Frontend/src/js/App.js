@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Icon, Message, Form, Grid} from 'semantic-ui-react';
-import ConfigDialog from './ConfigDialog.js';
-import { post, responseIsJson, getFileNameFromResponse, saveBlob } from './utils.js';
+import ConfigDialog from './ConfigDialog';
+import { post, responseIsJson, getFileNameFromResponse, saveBlob } from './utils';
 
 class App extends React.Component {
   constructor(props) {
