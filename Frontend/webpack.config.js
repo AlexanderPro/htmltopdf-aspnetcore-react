@@ -86,6 +86,7 @@ module.exports = function(env) {
     resolveLoader: {
       moduleExtensions: ['-loader'],
     },
+    mode: production ? 'production' : 'development',
     devtool: production ? '' : 'inline-source-map',
     devServer: {
       hot: true,
