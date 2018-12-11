@@ -27,13 +27,13 @@ class ConfigDialog extends React.Component {
         {text: 'Portrait', value: 'portrait'},
         {text: 'Landscape', value: 'landscape'}
       ],
+      paperUnitNames: [
+        {text: 'CM', value: 'cm'},
+        {text: 'IN', value: 'in'}
+      ],
       imageTypes: [
         {text: 'JPG', value: 'jpg'},
         {text: 'PNG', value: 'png'}
-      ],
-      imageUnitNames: [
-        {text: 'CM', value: 'cm'},
-        {text: 'IN', value: 'in'}
       ]
     };
   }
@@ -64,7 +64,7 @@ class ConfigDialog extends React.Component {
   }
 
   render() {
-    let { data, show, fileTypes, paperTypes, paperOrientations, imageTypes, imageUnitNames } = this.state;
+    let { data, show, fileTypes, paperTypes, paperOrientations, imageTypes, paperUnitNames } = this.state;
 
     return (
       <div>
@@ -135,7 +135,7 @@ class ConfigDialog extends React.Component {
                           <Grid.Column width={6} verticalAlign="middle">
                             <div className="field">
                               <label>Unit name</label>
-                              <Dropdown options={imageUnitNames}
+                              <Dropdown options={paperUnitNames}
                                 fluid search selection
                                 name="paperUnitName"
                                 value={data.paperUnitName}
