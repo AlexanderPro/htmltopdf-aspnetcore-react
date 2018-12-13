@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, Icon, Message, Form, Grid} from 'semantic-ui-react';
 import ConfigDialog from './ConfigDialog';
 import { post, responseIsJson, getFileNameFromResponse, saveBlob } from './utils';
+import cloneDeep from 'lodash/cloneDeep';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,7 +24,8 @@ class App extends React.Component {
       message: '',
       loading: false,
       showConfig: false,
-      config: config
+      config: config,
+      configCopy: cloneDeep(config)
     };
   }
 
@@ -36,7 +38,7 @@ class App extends React.Component {
     if (this.state.loading) {
       return;
     }
-    this.setState({showConfig: true, message: ''});
+    this.setState({showConfig: true, message: '', configCopy: cloneDeep(this.state.config)});
   }
 
   handleDownloadClick(e) {
@@ -83,13 +85,13 @@ class App extends React.Component {
   }
 
   handleSaveDialogClick(config) {
-    this.setState({showConfig: false, config: config});
+    this.setState({showConfig: false, config: cloneDeep(config)});
     localStorage.setItem('config', JSON.stringify(config));
   }
 
   render() {
-    const { url, loading, showConfig, config, message } = this.state;
-    const fileType = (config.fileType.toLowerCase() == 'image' && config.imageType) ? config.imageType.toUpperCase() : 'PDF';
+    const { url, loading, showConfig, configCopy, message } = this.state;
+    const fileType = (configCopy.fileType.toLowerCase() == 'image' && configCopy.imageType) ? configCopy.imageType.toUpperCase() : 'PDF';
 
     return (<div className="page-content">
       <Form as="form" noValidate>
@@ -136,7 +138,7 @@ class App extends React.Component {
       </Form>
       <ConfigDialog
         show={showConfig}
-        data={config}
+        data={configCopy}
         cancelCloseDialog={this.handleCancelDialogClick.bind(this)}
         saveCloseDialog={this.handleSaveDialogClick.bind(this)} />
     </div>);

@@ -1,14 +1,13 @@
 import React from 'react';
 import {Button, Modal, Dropdown, Grid, Input, Form} from 'semantic-ui-react';
 import isEqual from 'lodash/isEqual';
-import cloneDeep from 'lodash/cloneDeep';
 
 class ConfigDialog extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      data: cloneDeep(this.props.data),
+      data: this.props.data,
       show: this.props.show,
       fileTypes: [
         {text: 'Pdf', value: 'pdf'},
@@ -42,14 +41,14 @@ class ConfigDialog extends React.Component {
     if (nextProps.show != this.props.show || !isEqual(nextProps.data, this.props.data)) {
       this.setState({
         show: nextProps.show,
-        data: cloneDeep(nextProps.data)
+        data: nextProps.data
       });
     }
   }
 
   handleSaveClick(e) {
     e.preventDefault();
-    this.props.saveCloseDialog(cloneDeep(this.state.data));
+    this.props.saveCloseDialog(this.state.data);
   }
 
   handleCancelClick(e) {
