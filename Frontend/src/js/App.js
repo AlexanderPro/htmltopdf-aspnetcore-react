@@ -56,6 +56,9 @@ class App extends React.Component {
     this.setState({loading: true, message: ''});
     post('api/converter/converthtmltopdf', config)
       .then(response => {
+        if (!response.ok) {
+          throw response.statusText || 'Server Error.';
+        }
         if (responseIsJson(response)) {
           throw response.json();
         }
@@ -71,12 +74,16 @@ class App extends React.Component {
         self.setState({loading: false});
       })
       .catch(error => {
-        error.then(r => {
-          if (r.message) {
-            self.setState({message: r.message});
-          }
-          self.setState({loading: false});
-        });
+        if (typeof(error) == 'string') {
+          self.setState({message: error, loading: false});
+        } else {
+          error.then(r => {
+            if (r.message) {
+              self.setState({message: r.message});
+            }
+            self.setState({loading: false});
+          });
+        }
       });
   }
 
